@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Approved Project Proposal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project idea 
+Crafter Tracker is an app that helps crafters keep track of their projects. Within their projects users can add the materials and resources they are using, track their progress, and can calculate the cost of the completed project.
 
-## Available Scripts
+## Tech stack (frontend, backend, database)
+Frontend: React and Bootstrap
+Backend: Python and Django
+Database: Postgres
 
-In the project directory, you can run:
+## List of backend models and their properties
+### Project
+- Name
+- Category
+- Materials
+- Resources
+- Images
+- Notes
 
-### `npm start`
+### Material
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Name
+- Brand
+- Images
+- Link to Purchase
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Resources
 
-### `npm test`
+- Name
+- Format
+- URL
+- Notes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## React component hierarchy (if applicable)
+Will add later.
 
-### `npm run build`
+## User stories
+### MVP Goals
+As a user, I want to see all of my projects in a gallery.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As a user, I want to click on a project to see more information about it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a user, I want the ability to create, edit, and delete a project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As a user, I want the ability to create, edit, and delete materials in "My Stash".
 
-### `npm run eject`
+As a user, I want the ability to add materials from "My Stash" to a project.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Stretch Goals
+As a user, I want the ability to calculate the cost of a project.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As a user, I want a way to track how much time I have spent on a project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+As a user, I want to upload photos where applicable.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+As a user, I want to sign up and login using Google Authentication.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Wireframes
+![Homepage](https://media.git.generalassemb.ly/user/40938/files/18a4fffc-f382-40f4-ab41-5a73f95e0ca6)
+![Create Project](https://media.git.generalassemb.ly/user/40938/files/f4ac451f-1993-447a-a00b-21bc8b3ce924)
+![Create Material](https://media.git.generalassemb.ly/user/40938/files/31027dcf-cfc7-462e-a9c7-abaeb880818c)
+May add more wireframes later, or just get started on project now and plan more as I get to other aspects.
