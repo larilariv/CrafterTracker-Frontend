@@ -1,19 +1,17 @@
-import React from 'react';
+import React from "react";
+
+import { Navbar } from "./components";
 
 function App() {
   return (
     <div>
-      <header>
-        <h1>Crafter Tracker</h1>
-      </header>
-      
-      <main>
-      </main>
+      <Navbar />
 
-      <footer>
-      </footer>
+      <main></main>
+
+      <footer></footer>
     </div>
-  )
+  );
 }
 
 export default App;
