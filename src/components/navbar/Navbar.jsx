@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Navbar() {
   return (
     <div>
-      <header className="bg-gray-900">
+      <header className="bg-neutral-800">
         <div className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8">
-          <a className="block text-teal-300" href="/">
+          <a className="block text-cyan-400" href="/">
             <span className="sr-only">Home</span>
             <svg
               className="h-8"
@@ -20,19 +20,16 @@ function Navbar() {
             </svg>
           </a>
 
-          <div className="flex items-center justify-end flex-1 md:justify-between">
-            <nav
-              className="hidden md:block"
-              aria-labelledby="header-navigation"
-            >
-              <h2 className="sr-only" id="header-navigation">
+          <div class="flex items-center justify-end flex-1 md:justify-between">
+            <nav class="hidden md:block" aria-labelledby="header-navigation">
+              <h2 class="sr-only" id="header-navigation">
                 Header navigation
               </h2>
 
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-6 text-md">
                 <li>
                   <a
-                    className="text-white transition hover:text-white/75"
+                    className="text-white/75 transition hover:text-white"
                     href="/"
                   >
                     Project Gallery
@@ -41,7 +38,7 @@ function Navbar() {
 
                 <li>
                   <a
-                    className="text-white transition hover:text-white/75"
+                    className="text-white/75 transition hover:text-white"
                     href="/"
                   >
                     Material Stash
@@ -53,21 +50,21 @@ function Navbar() {
             <div className="flex items-center gap-4">
               <div className="sm:gap-4 sm:flex">
                 <a
-                  className="block px-5 py-2.5 text-sm font-medium text-white bg-teal-600 hover:bg-teal-500 transition rounded-md shadow"
+                  className="block px-5 py-2.5 text-sm font-medium text-cyan-100 bg-cyan-700 hover:bg-cyan-500 hover:text-white transition rounded-md"
                   href="/"
                 >
-                  Login
+                  Log in
                 </a>
 
                 <a
-                  className="hidden sm:block px-5 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-md hover:text-white/75 transition"
+                  className="hidden sm:block px-5 py-2.5 text-sm font-medium text-neutral-200 bg-neutral-700 hover:bg-neutral-500 hover:text-white transition rounded-md"
                   href="/"
                 >
-                  Register
+                  Sign up
                 </a>
               </div>
 
-              <button className="block p-2.5 text-white bg-gray-800 rounded md:hidden hover:text-white/75 transition">
+              <button className="block p-2.5 text-neutral-200 bg-neutral-700 rounded md:hidden hover:bg-neutral-500 hover:text-white transition">
                 <span className="sr-only">Toggle menu</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

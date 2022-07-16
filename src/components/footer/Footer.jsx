@@ -3,11 +3,11 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer className="bg-gray-900">
+      <footer className="bg-neutral-800">
         <div className="relative max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
           <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8">
             <a
-              className="inline-block p-2 text-teal-300 transition bg-gray-700 rounded-full sm:p-3 lg:p-4 hover:bg-gray-600"
+              className="inline-block p-2 text-cyan-500 transition bg-neutral-700 rounded-full sm:p-3 lg:p-4 hover:bg-neutral-500 hover:text-cyan-300"
               href="#MainContent"
             >
               <span className="sr-only">Back to top</span>
@@ -29,7 +29,7 @@ function Footer() {
 
           <div className="lg:flex lg:items-end lg:justify-between">
             <div>
-              <div className="flex justify-center text-teal-300 lg:justify-start">
+              <div className="flex justify-center text-cyan-400 lg:justify-start">
                 <svg
                   className="h-8"
                   viewBox="0 0 118 24"
@@ -79,14 +79,14 @@ function Footer() {
                 </svg>
               </div>
 
-              <p className="max-w-md mx-auto mt-6 leading-relaxed text-center text-gray-400 lg:text-left">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Incidunt consequuntur amet culpa cum itaque neque.
+              <p className="max-w-md mx-auto mt-6 leading-relaxed text-center text-white/75 lg:text-left">
+                Created by Larissa Vieira during General Assembly's Software
+                Engineering Immersive.
               </p>
             </div>
           </div>
 
-          <p className="mt-12 text-sm text-center text-gray-400 lg:text-right">
+          <p className="mt-6 text-sm text-center text-white/75 lg:text-right">
             Copyright &copy; 2022. All rights reserved.
           </p>
         </div>
