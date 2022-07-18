@@ -38,7 +38,7 @@ function ProjectCard() {
         <div className="p-6">
           <h5 className="mt-2 text-lg font-bold">Project Name</h5>
 
-          <p className="mt-2 text-sm text-gray-700">creator username</p>
+          <p className="mt-2 text-sm text-neutral-700">creator username</p>
         </div>
       </a>
     </div>
