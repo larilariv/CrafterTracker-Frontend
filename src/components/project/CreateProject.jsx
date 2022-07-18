@@ -14,38 +14,30 @@ function CreateProject() {
       <form action="" className="max-w-xl mx-auto mt-8 mb-0 space-y-4">
         {/* Name input */}
         <div>
-          <label
-            className="relative block p-3 border-2 border-neutral-700 rounded-lg bg-neutral-100"
-            htmlFor="name"
-          >
-            <input
-              className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent bg-neutral-100 border-none focus:ring-0 peer"
-              id="name"
-              type="text"
-              onChange=""
-            />
-            <span className="absolute text-xs font-medium text-neutral-500 transition-all left-3 peer-focus:text-xs peer-focus:top-3 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
-              Name
-            </span>
-          </label>
+          <header className="text-left">
+            <h1 className="mt-4 text-md">Name</h1>
+          </header>
+          <input
+            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+            id="name"
+            type="text"
+            placeholder="Name"
+            onChange=""
+          />
         </div>
 
         {/* Short description input */}
         <div>
-          <label
-            className="relative block p-3 border-2 border-neutral-700 rounded-lg bg-neutral-100"
-            htmlFor="description"
-          >
-            <input
-              className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent bg-neutral-100 border-none focus:ring-0 peer"
-              id="description"
-              type="text"
-              onChange=""
-            />
-            <span className="absolute text-xs font-medium text-neutral-500 transition-all left-3 peer-focus:text-xs peer-focus:top-3 peer-focus:translate-y-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm">
-              Short description
-            </span>
-          </label>
+          <header className="text-left">
+            <h1 className="mt-4 text-md">Description</h1>
+          </header>
+          <input
+            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+            id="description"
+            type="text"
+            placeholder="Short description"
+            onChange=""
+          />
         </div>
 
         {/* Categories accordion */}
@@ -744,8 +736,11 @@ function CreateProject() {
 
         {/* Notes textarea */}
         <div>
+          <header className="text-left">
+            <h1 className="mt-4 text-md">Notes</h1>
+          </header>
           <textarea
-            className="form-control block w-full px-3 py-1.5 text-base font-normal text-neutral-700 bg-neutral-100 bg-clip-padding p-3 border-2 border-neutral-700 rounded-lg focus:border-neutral-700 focus:ring-0"
+            className="form-control block w-full p-3 text-sm text-neutral-700 bg-neutral-100 bg-clip-padding border-2 border-neutral-700 rounded-lg focus:border-neutral-700 focus:ring-0"
             id="exampleFormControlTextarea1"
             rows="3"
             placeholder="Notes"
