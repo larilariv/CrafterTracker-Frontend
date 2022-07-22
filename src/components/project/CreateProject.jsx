@@ -1,47 +1,132 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 function CreateProject() {
+  let [name, setName] = useState("");
+  let [description, setDescription] = useState("");
+  let [message, setMessage] = useState("");
+  let { authTokens, logoutUser } = useContext(AuthContext);
+
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let response = await fetch("http://localhost:8000/api/projects/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authTokens.access),
+        },
+        body: JSON.stringify({
+          name: name,
+          description: description,
+        }),
+      });
+      let resJson = await response.json();
+      if (response.status === 200) {
+        setName("");
+        setDescription("");
+        setMessage("Project created successfully");
+      } else if (response.statusText === "Unauthorized") {
+        logoutUser();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-      <div className="max-w-lg mx-auto text-center">
-        <h1 className="text-2xl font-bold sm:text-3xl">Create a Project</h1>
+    <div>
+      <div
+        class="flex items-center justify-between gap-4 p-4 text-green-700 border rounded border-green-900/10 bg-green-50"
+        role="alert"
+      >
+        <div class="flex items-center gap-4">
+          <span class="p-2 text-white bg-green-600 rounded-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </span>
 
-        <p className="mt-4 text-neutral-500">
-          Fill out the form below to start tracking your project progress!
-        </p>
+          <p>
+            <strong class="text-sm font-medium"> Hooray! </strong>
+
+            <span class="block text-xs opacity-90">
+              {message ? <p>{message}</p> : null}
+            </span>
+          </p>
+        </div>
+
+        <button class="opacity-90" type="button">
+          <span class="sr-only"> Close </span>
+
+          <svg
+            class="w-4 h-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
+      <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-lg mx-auto text-center">
+          <h1 className="text-2xl font-bold sm:text-3xl">Create a Project</h1>
 
-      <form action="" className="max-w-xl mx-auto mt-8 mb-0 space-y-4">
-        {/* Name input */}
-        <div>
-          <header className="text-left">
-            <h1 className="mt-4 text-md">Name</h1>
-          </header>
-          <input
-            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
-            id="name"
-            type="text"
-            placeholder="Name"
-            onChange=""
-          />
+          <p className="mt-4 text-neutral-500">
+            Fill out the form below to start tracking your project progress!
+          </p>
         </div>
 
-        {/* Short description input */}
-        <div>
-          <header className="text-left">
-            <h1 className="mt-4 text-md">Description</h1>
-          </header>
-          <input
-            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
-            id="description"
-            type="text"
-            placeholder="Short description"
-            onChange=""
-          />
-        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-xl mx-auto mt-8 mb-0 space-y-4"
+        >
+          {/* Name input */}
+          <div>
+            <header className="text-left">
+              <h1 className="mt-4 text-md">Name</h1>
+            </header>
+            <input
+              type="text"
+              value={name}
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+              className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+            />
+          </div>
 
-        {/* Categories accordion */}
-        <div>
+          {/* Short description input */}
+          <div>
+            <header className="text-left">
+              <h1 className="mt-4 text-md">Description</h1>
+            </header>
+            <input
+              type="text"
+              value={description}
+              placeholder="Short description"
+              onChange={(e) => setDescription(e.target.value)}
+              className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+            />
+          </div>
+
+          {/* Categories accordion */}
+          {/* <div>
           <header className="text-left">
             <h1 className="mt-4 text-md">Category</h1>
             <p className="text-xs text-neutral-500">
@@ -50,7 +135,7 @@ function CreateProject() {
             </p>
           </header>
           {/* Filber & Textiles */}
-          <details
+          {/* <details
             className="group mt-2 border-2 border-neutral-700 rounded-lg"
             closed
           >
@@ -218,9 +303,9 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details>
+          </details> */}
           {/* Canvas & Paper */}
-          <details
+          {/* <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
             closed
           >
@@ -343,9 +428,9 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details>
+          </details> */}
           {/* Clay, Metal, & Wood */}
-          <details
+          {/* <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
             closed
           >
@@ -461,9 +546,9 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details>
+          </details> */}
           {/* Misc. */}
-          <details
+          {/* <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
             closed
           >
@@ -578,10 +663,10 @@ function CreateProject() {
               </fieldset>
             </div>
           </details>
-        </div>
+        </div> */}
 
-        {/* Image Upload */}
-        <div>
+          {/* Image Upload */}
+          {/* <div>
           <header className="text-left">
             <h1 className="mt-4 text-md">Images</h1>
             <p className="text-xs text-neutral-500">
@@ -614,7 +699,6 @@ function CreateProject() {
                     id="file-upload"
                     name="file-upload"
                     type="file"
-                    className="sr-only"
                     multiple
                   />
                 </label>
@@ -625,15 +709,15 @@ function CreateProject() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <script type="text/javascript">
+          {/* <script type="text/javascript">
           const checkbox = document.getElementById("flexCheckIndeterminate");
           checkbox.indeterminate = true;
-        </script>
+        </script> */}
 
-        {/* Materials and Resources buttons */}
-        <div>
+          {/* Materials and Resources buttons */}
+          {/* <div>
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
             href="/materials"
@@ -681,10 +765,10 @@ function CreateProject() {
               Resources
             </span>
           </a>
-        </div>
+        </div> */}
 
-        {/* Start and End date pickers */}
-        <div date-rangepicker className="flex items-center">
+          {/* Start and End date pickers */}
+          {/* <div date-rangepicker className="flex items-center">
           <div className="relative">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg
@@ -732,10 +816,10 @@ function CreateProject() {
               placeholder="Select date end"
             />
           </div>
-        </div>
+        </div> */}
 
-        {/* Notes textarea */}
-        <div>
+          {/* Notes textarea */}
+          {/* <div>
           <header className="text-left">
             <h1 className="mt-4 text-md">Notes</h1>
           </header>
@@ -745,18 +829,19 @@ function CreateProject() {
             rows="3"
             placeholder="Notes"
           ></textarea>
-        </div>
+        </div> */}
 
-        {/* Submit button */}
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="inline-block w-full px-5 py-3 text-sm font-medium text-white transition bg-lime-500 rounded-lg hover:scale-105 hover:shadow-xl"
-          >
-            Create Project
-          </button>
-        </div>
-      </form>
+          {/* Submit button */}
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="inline-block w-full px-5 py-3 text-sm font-medium text-white transition bg-lime-500 rounded-lg hover:scale-105 hover:shadow-xl"
+            >
+              Create Project
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
