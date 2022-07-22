@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import ProjectFilter from "./ProjectFilter";
 
-function Home() {
+function PublicProjectList() {
   let [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function Home() {
       <section>
         <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
-            {/* <ProjectFilter /> */}
+            <ProjectFilter />
             <div className="lg:col-span-3">
               {/* Sort Dropdown */}
               <div className="flex items-center justify-between">
@@ -51,9 +52,10 @@ function Home() {
               <div className="grid grid-cols-1 gap-px mt-4 sm:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project) => (
                   <div className="p-2">
-                    <a
+                    <Link
+                      to={`/allprojects/${project.id}`}
+                      key={project.id}
                       className="relative block bg-white border border-neutral-200 rounded"
-                      href=""
                     >
                       <button
                         className="absolute p-2 text-white text-red-400 border border-red-400 rounded-full right-5 top-5 hover:text-white hover:bg-red-400 active:bg-red-400 focus:outline-none focus:ring"
@@ -86,15 +88,21 @@ function Home() {
                       />
 
                       <div className="p-6">
-                        <h5 className="mt-2 text-lg font-bold">
+                        <h5
+                          key={project.name}
+                          className="mt-2 text-lg font-bold"
+                        >
                           {project.name}
                         </h5>
 
-                        <p className="mt-2 text-sm text-neutral-700">
+                        <p
+                          key={project.user}
+                          className="mt-2 text-md font-bold text-cyan-600"
+                        >
                           {project.user}
                         </p>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -106,4 +114,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default PublicProjectList;
