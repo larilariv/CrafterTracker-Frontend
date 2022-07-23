@@ -16,7 +16,7 @@ function Footer() {
           <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8">
             <a
               onClick={scrollToTop}
-              href="#top"
+              href="#!"
               className="inline-block p-2 text-cyan-500 transition bg-neutral-700 rounded-full sm:p-3 lg:p-4 hover:bg-neutral-500 hover:text-cyan-300"
             >
               <svg
