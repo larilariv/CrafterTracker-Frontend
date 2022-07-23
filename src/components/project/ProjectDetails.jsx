@@ -8,13 +8,16 @@ function ProjectDetails() {
   let { authTokens, logoutUser } = useContext(AuthContext);
 
   let getProjectDetails = async () => {
-    let response = await fetch(`http://localhost:8000/api/projects/${id}/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
+    let response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/projects/${id}/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authTokens.access),
+        },
+      }
+    );
     let data = await response.json();
 
     if (response.status === 200) {
@@ -26,6 +29,7 @@ function ProjectDetails() {
 
   useEffect(() => {
     getProjectDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -37,7 +41,7 @@ function ProjectDetails() {
           <img
             className="object-contain w-full h-64 lg:h-72 p-2"
             src={process.env.PUBLIC_URL + "image-placeholder-500px.png"}
-            alt="Project image placeholder"
+            alt="placeholder"
             loading="lazy"
           />
           {/* Extra Images */}
@@ -46,7 +50,7 @@ function ProjectDetails() {
               <img
                 className="object-contain w-full h-64 lg:h-72 p-2"
                 src={process.env.PUBLIC_URL + "image-placeholder-500px.png"}
-                alt="Project image placeholder"
+                alt="placeholder"
                 loading="lazy"
               />
             </div>
@@ -55,7 +59,7 @@ function ProjectDetails() {
               <img
                 className="object-contain w-full h-64 lg:h-72 p-2"
                 src={process.env.PUBLIC_URL + "image-placeholder-500px.png"}
-                alt="Project image placeholder"
+                alt="placeholder"
                 loading="lazy"
               />
             </div>
@@ -64,7 +68,7 @@ function ProjectDetails() {
               <img
                 className="object-contain w-full h-64 lg:h-72 p-2"
                 src={process.env.PUBLIC_URL + "image-placeholder-500px.png"}
-                alt="Project image placeholder"
+                alt="placeholder"
                 loading="lazy"
               />
             </div>
@@ -73,7 +77,7 @@ function ProjectDetails() {
               <img
                 className="object-contain w-full h-64 lg:h-72 p-2"
                 src={process.env.PUBLIC_URL + "image-placeholder-500px.png"}
-                alt="Project image placeholder"
+                alt="placeholder"
                 loading="lazy"
               />
             </div>
@@ -145,42 +149,20 @@ function ProjectDetails() {
           {/* Project Description */}
           <details className="relative mt-4 group">
             <summary className="block">
-              <div>
-                <div
-                  className="prose max-w-none
+              <div
+                className="prose max-w-none
                     //  group-open:hidden
                      "
-                >
-                  <p>{project.description}</p>
-                </div>
-
-                {/* <span className="mt-4 text-sm font-medium underline cursor-pointer group-open:absolute group-open:bottom-0 group-open:left-0 group-open:mt-0">
-                      Read More
-                    </span> */}
+              >
+                <p>{project.description}</p>
               </div>
             </summary>
-
-            {/* <div className="pb-6 prose max-w-none">
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa veniam dicta beatae eos ex error culpa delectus rem
-                    tenetur, architecto quam nesciunt, dolor veritatis nisi
-                    minus inventore, rerum at recusandae?
-                  </p>
-
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat nam sapiente nobis ea veritatis error consequatur
-                    nisi exercitationem iure laudantium culpa, animi temporibus
-                    non! Maxime et quisquam amet. A, deserunt!
-                  </p>
-                </div> */}
           </details>
 
           {/* Materials, Notes, and Resources tabs */}
           <ul className="flex border-b border-neutral-100">
             <li className="flex-1">
-              <a className="relative block p-4" href="">
+              <a className="relative block p-4" href="#/materials">
                 <span className="absolute inset-x-0 w-full h-px bg-cyan-500 -bottom-px"></span>
 
                 <div className="flex items-center justify-center">
@@ -207,7 +189,7 @@ function ProjectDetails() {
             </li>
 
             <li className="flex-1">
-              <a className="relative block p-4" href="">
+              <a className="relative block p-4" href="#/notes">
                 <div className="flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +214,7 @@ function ProjectDetails() {
             </li>
 
             <li className="flex-1">
-              <a className="relative block p-4" href="">
+              <a className="relative block p-4" href="#/resources">
                 <div className="flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

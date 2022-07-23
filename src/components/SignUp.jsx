@@ -11,8 +11,8 @@ function SignUp() {
 
         <p className="max-w-md mx-auto mt-4 text-center text-neutral-500">
           Create an account to get access to all of our site features like
-          tracking projects, adding materials to your online "stash", <br />
-          and so much more!
+          tracking projects, adding materials to your online "stash", and so
+          much more!
         </p>
 
         <form
@@ -135,9 +135,10 @@ function SignUp() {
           </button>
 
           <p className="text-sm text-center text-neutral-500">
-            Already signed up?&nbsp;
+            Already signed up?{" "}
             <Link
               to="/login"
+              href="https://craftertracker.herokuapp.com/login"
               className="underline font-bold text-cyan-500 hover:text-cyan-600"
             >
               Log in

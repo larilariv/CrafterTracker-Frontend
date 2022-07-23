@@ -48,7 +48,7 @@ function EditProject() {
           {/* Filber & Textiles */}
           <details
             className="group mt-2 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Fiber & Textiles</h5>
@@ -218,7 +218,7 @@ function EditProject() {
           {/* Canvas & Paper */}
           <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Canvas & Paper</h5>
@@ -343,7 +343,7 @@ function EditProject() {
           {/* Clay, Metal, & Wood */}
           <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">
@@ -461,7 +461,7 @@ function EditProject() {
           {/* Misc. */}
           <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Misc.</h5>
@@ -632,7 +632,7 @@ function EditProject() {
         <div>
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/materials"
+            href="https://craftertracker.herokuapp.com/materials"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg
@@ -656,7 +656,7 @@ function EditProject() {
 
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/resources"
+            href="https://craftertracker.herokuapp.com/resources"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg

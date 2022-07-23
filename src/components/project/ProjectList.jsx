@@ -8,13 +8,16 @@ function ProjectList() {
   let { authTokens, logoutUser } = useContext(AuthContext);
 
   let getProjects = async () => {
-    let response = await fetch("http://localhost:8000/api/projects/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
+    let response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/projects/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authTokens.access),
+        },
+      }
+    );
     let data = await response.json();
 
     if (response.status === 200) {
@@ -26,6 +29,7 @@ function ProjectList() {
 
   useEffect(() => {
     getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -36,11 +40,11 @@ function ProjectList() {
           {/* Sort Dropdown */}
           <div className="flex items-center justify-between">
             <p className="text-sm text-neutral-500">
-              <span className="hidden sm:inline">Showing</span>6 of 24 Products
+              <span className="hidden sm:inline">Showing </span>6 of 24 Products
             </p>
 
             <div className="ml-4">
-              <label htmlFor="SortBy">Sort</label>
+              <label htmlFor="SortBy">Sort </label>
 
               <select
                 id="SortBy"
@@ -57,10 +61,10 @@ function ProjectList() {
           <div className="grid grid-cols-1 gap-px mt-4 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => {
               return (
-                <div className="p-2">
+                <div className="p-2" key={`project-${project.id}`}>
                   <Link
-                    to={`/projects/${project.id}`}
-                    key={project.id}
+                    to={`/projects/${project.id}/`}
+                    href="https://craftertracker.herokuapp.com/projects/{project.id}"
                     className="relative block bg-white border border-neutral-200 rounded"
                   >
                     <button
@@ -89,7 +93,7 @@ function ProjectList() {
                       src={
                         process.env.PUBLIC_URL + "image-placeholder-500px.png"
                       }
-                      alt="Project image placeholder"
+                      alt="placeholder"
                       loading="lazy"
                     />
 

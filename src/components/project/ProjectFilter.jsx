@@ -31,10 +31,8 @@ function ProjectFilter() {
             <div className="px-5 py-6 space-y-2">
               <div className="flex items-center">
                 <input
-                  id="imagesCheck"
                   type="checkbox"
-                  name="imagesCheck"
-                  className="w-5 h-5 border-neutral-300 rounded"
+                  className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                 />
 
                 <label
@@ -47,10 +45,8 @@ function ProjectFilter() {
 
               <div className="flex items-center">
                 <input
-                  id="projectComplete"
                   type="checkbox"
-                  name="projectComplete"
-                  className="w-5 h-5 border-neutral-300 rounded"
+                  className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                 />
 
                 <label
@@ -98,10 +94,8 @@ function ProjectFilter() {
               <div className="px-5 py-6 space-y-2">
                 <div className="flex items-center">
                   <input
-                    id="cross-stitch"
                     type="checkbox"
-                    name="cross-stitch"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -114,10 +108,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="crochet"
                     type="checkbox"
-                    name="crochet"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label htmlFor="crochet" className="ml-3 text-sm font-medium">
@@ -127,10 +119,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="embroidery"
                     type="checkbox"
-                    name="embroidery"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -143,10 +133,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="felting"
                     type="checkbox"
-                    name="felting"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label htmlFor="felting" className="ml-3 text-sm font-medium">
@@ -156,10 +144,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="knitting"
                     type="checkbox"
-                    name="knitting"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -172,10 +158,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="lacemaking"
                     type="checkbox"
-                    name="lacemaking"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -188,10 +172,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="macrame"
                     type="checkbox"
-                    name="macrame"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label htmlFor="macrame" className="ml-3 text-sm font-medium">
@@ -201,10 +183,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="millinery"
                     type="checkbox"
-                    name="millinery"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -217,10 +197,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="quilting"
                     type="checkbox"
-                    name="quilting"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -233,10 +211,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="rug-making"
                     type="checkbox"
-                    name="rug-making"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -249,10 +225,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="sewing"
                     type="checkbox"
-                    name="sewing"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label htmlFor="sewing" className="ml-3 text-sm font-medium">
@@ -262,10 +236,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="shoemaking"
                     type="checkbox"
-                    name="shoemaking"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -278,10 +250,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="spinning"
                     type="checkbox"
-                    name="spinning"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -294,10 +264,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="tapestry"
                     type="checkbox"
-                    name="tapestry"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label
@@ -310,10 +278,8 @@ function ProjectFilter() {
 
                 <div className="flex items-center">
                   <input
-                    id="weaving"
                     type="checkbox"
-                    name="weaving"
-                    className="w-5 h-5 border-neutral-300 rounded"
+                    className="w-5 h-5 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                   />
 
                   <label htmlFor="weaving" className="ml-3 text-sm font-medium">

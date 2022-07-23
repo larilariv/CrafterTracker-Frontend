@@ -102,9 +102,10 @@ function LogIn() {
 
             {/* Sign Up Link */}
             <p className="text-sm text-center text-neutral-500">
-              Don't have an account?&nbsp;
+              Don't have an account?{" "}
               <Link
                 to="/signup"
+                href="https://craftertracker.herokuapp.com/signup"
                 className="underline font-bold text-cyan-500 hover:text-cyan-600"
               >
                 Sign up

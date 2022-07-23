@@ -8,7 +8,11 @@ function Navbar() {
     <div>
       <header className="bg-neutral-800">
         <div className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8">
-          <Link to="/" className="block text-cyan-400">
+          <Link
+            to="/allprojects"
+            href="https://craftertracker.herokuapp.com/allprojects"
+            className="block text-cyan-400"
+          >
             <img
               src={process.env.PUBLIC_URL + "logo-darkmode.svg"}
               width="125"
@@ -26,12 +30,14 @@ function Navbar() {
                   <>
                     <Link
                       to="/projects"
+                      href="https://craftertracker.herokuapp.com/projects"
                       className="text-white/75 transition hover:text-white"
                     >
                       My Project Gallery
                     </Link>
                     <Link
                       to="/materials"
+                      href="https://craftertracker.herokuapp.com/materials"
                       className="text-white/75 transition hover:text-white"
                     >
                       My Material "Stash"
@@ -39,7 +45,8 @@ function Navbar() {
                   </>
                 ) : // <>
                 //   <Link
-                //     to="/public_projects"
+                //     to="/allprojects"
+                //     href="https://craftertracker.herokuapp.com/allprojects"
                 //     className="text-white/75 transition hover:text-white"
                 //   >
                 //     {/* Project Gallery */}
@@ -54,27 +61,16 @@ function Navbar() {
                 {user ? (
                   <>
                     <Link
-                      to="/profile"
-                      className="hidden sm:block px-4 py-2 text-md text-white/75 transition hover:text-white"
+                      to="/projects/new"
+                      href="https://craftertracker.herokuapp.com/projects/new"
+                      className="hidden sm:block px-5 py-2.5 text-sm text-lime-100 bg-lime-700 hover:bg-lime-500 hover:text-white transition rounded-md"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 block"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
+                      New Project
                     </Link>
                     <Link
                       onClick={logoutUser}
                       to="/login"
+                      href="https://craftertracker.herokuapp.com/login"
                       className="hidden sm:block px-5 py-2.5 text-sm text-cyan-100 bg-cyan-700 hover:bg-cyan-500 hover:text-white transition rounded-md"
                     >
                       Log out
@@ -84,12 +80,14 @@ function Navbar() {
                   <>
                     <Link
                       to="/login"
+                      href="https://craftertracker.herokuapp.com/login"
                       className="hidden sm:block px-5 py-2.5 text-sm text-neutral-200 bg-neutral-700 hover:bg-neutral-500 hover:text-white transition rounded-md"
                     >
                       Log in
                     </Link>
                     <Link
                       to="/signup"
+                      href="https://craftertracker.herokuapp.com/signup"
                       className="hidden sm:block px-5 py-2.5 text-sm text-cyan-100 bg-cyan-700 hover:bg-cyan-500 hover:text-white transition rounded-md"
                     >
                       Sign up
@@ -98,7 +96,7 @@ function Navbar() {
                 )}
               </div>
 
-              {/* <button className="block p-2.5 text-neutral-200 bg-neutral-700 rounded md:hidden hover:bg-neutral-500 hover:text-white transition">
+              <button className="block p-2.5 text-neutral-200 bg-neutral-700 rounded md:hidden hover:bg-neutral-500 hover:text-white transition">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5"
@@ -113,7 +111,7 @@ function Navbar() {
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
-              </button> */}
+              </button>
             </div>
           </div>
         </div>

@@ -1,24 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProjectFilter from "./ProjectFilter";
 
 function PublicProjectList() {
   let [projects, setProjects] = useState([]);
 
-  useEffect(() => {
-    getProjects();
-  }, []);
-
   let getProjects = async () => {
-    let response = await fetch("http://localhost:8000/api/allprojects/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/allprojects/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let data = await response.json();
     setProjects(data);
   };
+
+  useEffect(() => {
+    getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -30,12 +34,12 @@ function PublicProjectList() {
               {/* Sort Dropdown */}
               <div className="flex items-center justify-between">
                 <p className="text-sm text-neutral-500">
-                  <span className="hidden sm:inline">Showing</span>6 of 24
+                  <span className="hidden sm:inline">Showing </span>6 of 24
                   Products
                 </p>
 
                 <div className="ml-4">
-                  <label htmlFor="SortBy">Sort</label>
+                  <label htmlFor="SortBy">Sort </label>
 
                   <select
                     id="SortBy"
@@ -51,10 +55,10 @@ function PublicProjectList() {
               {/* Project Card */}
               <div className="grid grid-cols-1 gap-px mt-4 sm:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project) => (
-                  <div className="p-2">
+                  <div className="p-2" key={`public-project-${project.id}`}>
                     <Link
-                      to={`/allprojects/${project.id}`}
-                      key={project.id}
+                      to={`/allprojects/${project.id}/`}
+                      href="https://craftertracker.herokuapp.com/allprojects/{project.id}"
                       className="relative block bg-white border border-neutral-200 rounded"
                     >
                       <button
@@ -83,7 +87,7 @@ function PublicProjectList() {
                         src={
                           process.env.PUBLIC_URL + "image-placeholder-500px.png"
                         }
-                        alt="Project image placeholder"
+                        alt="placeholder"
                         loading="lazy"
                       />
 

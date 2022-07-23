@@ -16,6 +16,7 @@ function Footer() {
           <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8">
             <a
               onClick={scrollToTop}
+              href="#top"
               className="inline-block p-2 text-cyan-500 transition bg-neutral-700 rounded-full sm:p-3 lg:p-4 hover:bg-neutral-500 hover:text-cyan-300"
             >
               <svg
@@ -36,7 +37,7 @@ function Footer() {
           <div className="lg:flex lg:items-end lg:justify-between">
             <div>
               <div className="flex justify-center text-cyan-400 lg:justify-start">
-                <Link to="/">
+                <Link to="/" href="https://craftertracker.herokuapp.com/">
                   <img
                     src={process.env.PUBLIC_URL + "logo-darkmode.svg"}
                     width="125"

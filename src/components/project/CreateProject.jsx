@@ -1,132 +1,86 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function CreateProject() {
   let [name, setName] = useState("");
   let [description, setDescription] = useState("");
-  let [message, setMessage] = useState("");
   let { authTokens, logoutUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response = await fetch("http://localhost:8000/api/projects/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + String(authTokens.access),
-        },
-        body: JSON.stringify({
-          name: name,
-          description: description,
-        }),
-      });
-      let resJson = await response.json();
+      let response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/projects/create/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + String(authTokens.access),
+          },
+          body: JSON.stringify({
+            name: name,
+            description: description,
+          }),
+        }
+      );
+      let data = await response.json();
+
       if (response.status === 200) {
-        setName("");
-        setDescription("");
-        setMessage("Project created successfully");
+        setName(data.name);
+        setDescription(data.description);
       } else if (response.statusText === "Unauthorized") {
         logoutUser();
       }
     } catch (error) {
       console.log(error);
     }
+    navigate("/allprojects");
   };
 
   return (
-    <div>
-      <div
-        class="flex items-center justify-between gap-4 p-4 text-green-700 border rounded border-green-900/10 bg-green-50"
-        role="alert"
-      >
-        <div class="flex items-center gap-4">
-          <span class="p-2 text-white bg-green-600 rounded-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </span>
+    <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-lg mx-auto text-center">
+        <h1 className="text-2xl font-bold sm:text-3xl text-cyan-500">
+          Create a Project
+        </h1>
 
-          <p>
-            <strong class="text-sm font-medium"> Hooray! </strong>
-
-            <span class="block text-xs opacity-90">
-              {message ? <p>{message}</p> : null}
-            </span>
-          </p>
-        </div>
-
-        <button class="opacity-90" type="button">
-          <span class="sr-only"> Close </span>
-
-          <svg
-            class="w-4 h-4"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <p className="mt-4 text-neutral-500">
+          Fill out the form below to start tracking your project progress!
+        </p>
       </div>
-      <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
-        <div className="max-w-lg mx-auto text-center">
-          <h1 className="text-2xl font-bold sm:text-3xl">Create a Project</h1>
 
-          <p className="mt-4 text-neutral-500">
-            Fill out the form below to start tracking your project progress!
-          </p>
+      <form onSubmit={handleSubmit} className="max-w-xl mx-auto mb-0 space-y-4">
+        {/* Name input */}
+        <div>
+          <header className="text-left">
+            <h1 className="mt-4 text-md">Name</h1>
+          </header>
+          <input
+            type="text"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+          />
         </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-xl mx-auto mt-8 mb-0 space-y-4"
-        >
-          {/* Name input */}
-          <div>
-            <header className="text-left">
-              <h1 className="mt-4 text-md">Name</h1>
-            </header>
-            <input
-              type="text"
-              value={name}
-              placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
-              className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
-            />
-          </div>
-
-          {/* Short description input */}
-          <div>
-            <header className="text-left">
-              <h1 className="mt-4 text-md">Description</h1>
-            </header>
-            <input
-              type="text"
-              value={description}
-              placeholder="Short description"
-              onChange={(e) => setDescription(e.target.value)}
-              className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
-            />
-          </div>
-
-          {/* Categories accordion */}
-          {/* <div>
+        {/* Short description input */}
+        <div>
+          <header className="text-left">
+            <h1 className="mt-4 text-md">Description</h1>
+          </header>
+          <input
+            type="text"
+            value={description}
+            placeholder="Short description"
+            onChange={(e) => setDescription(e.target.value)}
+            className="relative block w-full p-3 text-sm border-2 border-neutral-700 rounded-lg bg-neutral-100 focus:border-neutral-700 focus:ring-0"
+          />
+        </div>
+        {/* Categories accordion */}
+        <div>
           <header className="text-left">
             <h1 className="mt-4 text-md">Category</h1>
             <p className="text-xs text-neutral-500">
@@ -135,9 +89,9 @@ function CreateProject() {
             </p>
           </header>
           {/* Filber & Textiles */}
-          {/* <details
+          <details
             className="group mt-2 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Fiber & Textiles</h5>
@@ -164,7 +118,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Cross-stitch</span>
                     </label>
@@ -174,7 +128,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Crocheting</span>
                     </label>
@@ -184,7 +138,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Embroidery</span>
                     </label>
@@ -194,7 +148,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Felting</span>
                     </label>
@@ -204,7 +158,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Knitting</span>
                     </label>
@@ -214,7 +168,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Lace-making</span>
                     </label>
@@ -223,7 +177,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Macrame</span>
                     </label>
@@ -232,7 +186,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Millenery</span>
                     </label>
@@ -241,7 +195,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Quilting</span>
                     </label>
@@ -250,7 +204,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Rug making</span>
                     </label>
@@ -259,7 +213,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Sewing</span>
                     </label>
@@ -268,7 +222,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Shoemaking</span>
                     </label>
@@ -277,7 +231,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Spinning</span>
                     </label>
@@ -286,7 +240,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Tapestry</span>
                     </label>
@@ -295,7 +249,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Weaving</span>
                     </label>
@@ -303,11 +257,11 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details> */}
+          </details>
           {/* Canvas & Paper */}
-          {/* <details
+          <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Canvas & Paper</h5>
@@ -334,7 +288,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Bookbinding</span>
                     </label>
@@ -344,7 +298,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Calligraphy</span>
                     </label>
@@ -354,7 +308,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Cardmaking</span>
                     </label>
@@ -364,7 +318,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Collage</span>
                     </label>
@@ -374,7 +328,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Decoupage</span>
                     </label>
@@ -384,7 +338,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Origami</span>
                     </label>
@@ -393,7 +347,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Papier-mâché</span>
                     </label>
@@ -402,7 +356,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Quilling</span>
                     </label>
@@ -411,7 +365,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Scrapbooking</span>
                     </label>
@@ -420,7 +374,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Stamping</span>
                     </label>
@@ -428,11 +382,11 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details> */}
+          </details>
           {/* Clay, Metal, & Wood */}
-          {/* <details
+          <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">
@@ -461,7 +415,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Cabinet making</span>
                     </label>
@@ -471,7 +425,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Chip carving</span>
                     </label>
@@ -481,7 +435,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Jewelry</span>
                     </label>
@@ -491,7 +445,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Metalworking</span>
                     </label>
@@ -501,7 +455,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Pottery</span>
                     </label>
@@ -511,7 +465,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Sculpture</span>
                     </label>
@@ -520,7 +474,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Woodworking</span>
                     </label>
@@ -529,7 +483,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Wood burning</span>
                     </label>
@@ -538,7 +492,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Wood turning</span>
                     </label>
@@ -546,11 +500,11 @@ function CreateProject() {
                 </ul>
               </fieldset>
             </div>
-          </details> */}
+          </details>
           {/* Misc. */}
-          {/* <details
+          <details
             className="group mt-4 border-2 border-neutral-700 rounded-lg"
-            closed
+            closed="true"
           >
             <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-neutral-100">
               <h5 className="font-medium text-neutral-900">Misc.</h5>
@@ -577,7 +531,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Basket-weaving</span>
                     </label>
@@ -587,7 +541,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Beadwork</span>
                     </label>
@@ -597,7 +551,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Doll making</span>
                     </label>
@@ -607,7 +561,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Egg decorating</span>
                     </label>
@@ -617,7 +571,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Etching</span>
                     </label>
@@ -627,7 +581,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Floral design</span>
                     </label>
@@ -636,7 +590,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Mosaics</span>
                     </label>
@@ -645,7 +599,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Stained glass</span>
                     </label>
@@ -654,7 +608,7 @@ function CreateProject() {
                     <label className="flex items-center text-sm">
                       <input
                         type="checkbox"
-                        className="w-6 h-6 border border-neutral-200 rounded-md"
+                        className="w-6 h-6 text-cyan-500 bg-gray-100 border border-neutral-300 rounded-md focus:ring-cyan-500"
                       />
                       <span className="ml-3 font-medium">Toy making</span>
                     </label>
@@ -663,64 +617,54 @@ function CreateProject() {
               </fieldset>
             </div>
           </details>
-        </div> */}
-
-          {/* Image Upload */}
-          {/* <div>
+        </div>
+        {/* Image Upload */}
+        <div>
           <header className="text-left">
             <h1 className="mt-4 text-md">Images</h1>
-            <p className="text-xs text-neutral-500">
-              Upload images of your project progress and completion
+            <p className="mb-2 text-xs text-neutral-500">
+              Upload images of your project progress
             </p>
           </header>
-          <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-neutral-700 border-dashed rounded-md">
-            <div className="space-y-1 text-center">
-              <svg
-                className="mx-auto h-12 w-12 text-neutral-400"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 48 48"
-                aria-hidden="true"
-              >
-                <path
-                  d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <div className="flex text-sm text-neutral-600">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-cyan-600 hover:text-cyan-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500"
+          <div className="flex justify-center items-center w-full">
+            <label
+              htmlFor="dropzone-file"
+              className="flex flex-col justify-center items-center w-full h-50 bg-gray-50 rounded-lg border-2 border-neutral-700 border-dashed hover:border-cyan-600 cursor-pointer hover:bg-neutral-100"
+            >
+              <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                <svg
+                  aria-hidden="true"
+                  className="mb-3 w-10 h-10 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <span>Upload a file</span>
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    multiple
-                  />
-                </label>
-                <p className="pl-1">or drag and drop</p>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                  ></path>
+                </svg>
+                <p className="mb-2 text-sm text-gray-500">
+                  <span className="font-semibold">Click to upload</span> or drag
+                  and drop
+                </p>
+                <p className="text-xs text-gray-500">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                </p>
               </div>
-              <p className="text-xs text-neutral-500">
-                PNG, JPG, GIF up to 10MB
-              </p>
-            </div>
+              <input id="dropzone-file" type="file" className="hidden" />
+            </label>
           </div>
-        </div> */}
+        </div>
 
-          {/* <script type="text/javascript">
-          const checkbox = document.getElementById("flexCheckIndeterminate");
-          checkbox.indeterminate = true;
-        </script> */}
-
-          {/* Materials and Resources buttons */}
-          {/* <div>
-          <a
+        {/* Materials and Resources buttons */}
+        <div>
+          {/* <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/materials"
+            href="https://craftertracker.herokuapp.com/materials"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg
@@ -744,7 +688,7 @@ function CreateProject() {
 
           <a
             className="relative inline-flex items-center px-8 py-3 overflow-hidden text-white bg-indigo-600 rounded group active:bg-indigo-500 focus:outline-none focus:ring"
-            href="/resources"
+            href="https://craftertracker.herokuapp.com/resources"
           >
             <span className="absolute left-0 transition-transform -translate-x-full group-hover:translate-x-4">
               <svg
@@ -764,12 +708,12 @@ function CreateProject() {
             <span className="text-sm font-medium transition-all group-hover:ml-4">
               Resources
             </span>
-          </a>
-        </div> */}
+          </a> */}
+        </div>
 
-          {/* Start and End date pickers */}
-          {/* <div date-rangepicker className="flex items-center">
-          <div className="relative">
+        {/* Start and End date pickers */}
+        <div>
+          {/* <div date-rangepicker className="flex items-center relative">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
@@ -815,13 +759,13 @@ function CreateProject() {
               className="bg-neutral-100 border-2 border-neutral-700 rounded-lg text-neutral-900 sm:text-sm block w-full pl-10 p-2.5 focus:border-neutral-700 focus:ring-0 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white"
               placeholder="Select date end"
             />
-          </div>
-        </div> */}
+          </div> */}
+        </div>
 
-          {/* Notes textarea */}
-          {/* <div>
+        {/* Notes textarea */}
+        <div>
           <header className="text-left">
-            <h1 className="mt-4 text-md">Notes</h1>
+            <h1 className=" text-md">Notes</h1>
           </header>
           <textarea
             className="form-control block w-full p-3 text-sm text-neutral-700 bg-neutral-100 bg-clip-padding border-2 border-neutral-700 rounded-lg focus:border-neutral-700 focus:ring-0"
@@ -829,19 +773,17 @@ function CreateProject() {
             rows="3"
             placeholder="Notes"
           ></textarea>
-        </div> */}
-
-          {/* Submit button */}
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="inline-block w-full px-5 py-3 text-sm font-medium text-white transition bg-lime-500 rounded-lg hover:scale-105 hover:shadow-xl"
-            >
-              Create Project
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+        {/* Submit button */}
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="inline-block w-full px-5 py-3 text-sm font-medium text-white transition bg-lime-500 rounded-lg hover:scale-105 hover:shadow-xl"
+          >
+            Create Project
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
