@@ -1,15 +1,17 @@
 import CreateProject from "./CreateProject";
 import EditProject from "./EditProject";
-import ProjectDetail from "./ProjectDetail";
+import ProjectDetails from "./ProjectDetails";
 import ProjectFilter from "./ProjectFilter";
 import ProjectList from "./ProjectList";
-import ProjectCard from "./ProjectCard";
+import PublicProjectDetails from "./PublicProjectDetails";
+import PublicProjectList from "./PublicProjectList";
 
 export {
   CreateProject,
   EditProject,
-  ProjectDetail,
+  ProjectDetails,
   ProjectFilter,
   ProjectList,
-  ProjectCard,
+  PublicProjectDetails,
+  PublicProjectList,
 };
