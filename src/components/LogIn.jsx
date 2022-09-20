@@ -64,7 +64,7 @@ function LogIn() {
                 htmlFor="password"
               >
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Password"
                   className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
