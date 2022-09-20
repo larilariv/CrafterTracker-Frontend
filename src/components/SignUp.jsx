@@ -100,7 +100,7 @@ function SignUp() {
               <input
                 className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
                 id="password"
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange=""
               />
