@@ -32,6 +32,7 @@ function SignUp() {
                 id="email"
                 type="text"
                 placeholder="Email"
+                maxlength="50"
                 onChange=""
               />
 
@@ -67,6 +68,7 @@ function SignUp() {
                 id="username"
                 type="text"
                 placeholder="Username"
+                maxlength="35"
                 onChange=""
               />
 
@@ -102,6 +104,7 @@ function SignUp() {
                 id="password"
                 type="password"
                 placeholder="Password"
+                maxlength="25"
                 onChange=""
               />
 
