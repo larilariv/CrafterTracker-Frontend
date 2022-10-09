@@ -32,6 +32,7 @@ function LogIn() {
                   type="text"
                   name="username"
                   placeholder="Username"
+                  maxlength="35"
                   className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
                 />
 
@@ -64,9 +65,10 @@ function LogIn() {
                 htmlFor="password"
               >
                 <input
-                  type="text"
+                  type="password"
                   name="password"
                   placeholder="Password"
+                  maxlength="25"
                   className="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
                 />
 

@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg mx-auto my-40">
       <h1 className="mt-8 text-xl font-bold text-center text-cyan-500 sm:text-3xl">
         Welcome to
       </h1>
