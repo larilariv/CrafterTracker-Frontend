@@ -1,38 +1,22 @@
-# Approved Project Proposal
+# Crafter Tracker
 
-## Project idea 
-Crafter Tracker is an app that helps crafters keep track of their projects. Within their projects users can add the materials and resources they are using, track their progress, and can calculate the cost of the completed project.
+[**Click to View**](https://craftertracker.herokuapp.com/)
 
-## Tech stack (frontend, backend, database)
-Frontend: React and Bootstrap
-Backend: Python and Django
-Database: Postgres
+Crafter Tracker is an app that give users the ability to track all of their crafty projects.
 
-## List of backend models and their properties
-### Project
-- Name
-- Category
-- Materials
-- Resources
-- Images
-- Notes
+The home page of Crafter Tracker will be a gallery of all the public projects on the site and they will be sorted based on their number of likes.
 
-### Material
+Unauthorized users can view a public project's details by clicking on it's card and this brings them to the project deatils page with all the info provided by the project creator.
 
-- Name
-- Brand
-- Images
-- Link to Purchase
+Authorized users have the ability to create, edit, or delete their own listings. They also have a different navbar that allows them to view a gallery of their personal projects as well as their "Material Stash".
 
-### Resources
+## Tech Stack
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a>
 
-- Name
-- Format
-- URL
-- Notes
-
-## React component hierarchy (if applicable)
-Will add later.
+## Wireframes
+![Homepage](https://media.git.generalassemb.ly/user/40938/files/18a4fffc-f382-40f4-ab41-5a73f95e0ca6)
+![Create Project](https://media.git.generalassemb.ly/user/40938/files/f4ac451f-1993-447a-a00b-21bc8b3ce924)
+![Create Material](https://media.git.generalassemb.ly/user/40938/files/31027dcf-cfc7-462e-a9c7-abaeb880818c)
 
 ## User stories
 ### MVP Goals
@@ -54,10 +38,3 @@ As a user, I want a way to track how much time I have spent on a project.
 As a user, I want to upload photos where applicable.
 
 As a user, I want to sign up and login using Google Authentication.
-
-
-## Wireframes
-![Homepage](https://media.git.generalassemb.ly/user/40938/files/18a4fffc-f382-40f4-ab41-5a73f95e0ca6)
-![Create Project](https://media.git.generalassemb.ly/user/40938/files/f4ac451f-1993-447a-a00b-21bc8b3ce924)
-![Create Material](https://media.git.generalassemb.ly/user/40938/files/31027dcf-cfc7-462e-a9c7-abaeb880818c)
-May add more wireframes later, or just get started on project now and plan more as I get to other aspects.
