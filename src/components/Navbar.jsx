@@ -9,8 +9,8 @@ function Navbar() {
       <header className="bg-neutral-800">
         <div className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8">
           <Link
-            to="/allprojects"
-            href="https://craftertracker.herokuapp.com/allprojects"
+            to="/publicprojects"
+            href="https://craftertracker.herokuapp.com/publicprojects"
             className="block text-cyan-400"
           >
             <img

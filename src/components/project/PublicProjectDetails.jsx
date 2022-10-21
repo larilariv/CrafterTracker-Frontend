@@ -7,7 +7,7 @@ function PublicProjectDetails() {
 
   let getAllProjectDetails = async () => {
     let response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/allprojects/${id}/`,
+      `${process.env.REACT_APP_API_URL}/api/publicprojects/${id}/`,
       {
         method: "GET",
         headers: {

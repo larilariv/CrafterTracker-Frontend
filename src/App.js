@@ -26,10 +26,10 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<LogIn />} />
           <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="allprojects/" element={<PublicProjectList />} />
+          <Route exact path="publicprojects/" element={<PublicProjectList />} />
           <Route
             exact
-            path="allprojects/:id"
+            path="publicprojects/:id"
             element={<PublicProjectDetails />}
           />
           <Route

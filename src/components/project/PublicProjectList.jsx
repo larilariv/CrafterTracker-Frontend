@@ -7,7 +7,7 @@ function PublicProjectList() {
 
   let getProjects = async () => {
     let response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/allprojects/`,
+      `${process.env.REACT_APP_API_URL}/api/publicprojects/`,
       {
         method: "GET",
         headers: {
@@ -57,8 +57,8 @@ function PublicProjectList() {
                 {projects.map((project) => (
                   <div className="p-2" key={`public-project-${project.id}`}>
                     <Link
-                      to={`/allprojects/${project.id}/`}
-                      href="https://craftertracker.herokuapp.com/allprojects/{project.id}"
+                      to={`/publicprojects/${project.id}/`}
+                      href="https://craftertracker.herokuapp.com/publicprojects/{project.id}"
                       className="relative block bg-white border border-neutral-200 rounded"
                     >
                       <button
