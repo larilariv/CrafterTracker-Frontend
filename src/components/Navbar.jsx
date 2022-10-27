@@ -9,8 +9,8 @@ function Navbar() {
       <header className="bg-neutral-800">
         <div className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8">
           <Link
-            to="/allprojects"
-            href="https://craftertracker.herokuapp.com/allprojects"
+            to="/publicprojects"
+            href="https://craftertracker.herokuapp.com/publicprojects"
             className="block text-cyan-400"
           >
             <img
@@ -61,8 +61,8 @@ function Navbar() {
                 {user ? (
                   <>
                     <Link
-                      to="/projects/new"
-                      href="https://craftertracker.herokuapp.com/projects/new"
+                      to="/projects/create"
+                      href="https://craftertracker.herokuapp.com/projects/create"
                       className="hidden sm:block px-5 py-2.5 text-sm text-lime-100 bg-lime-700 hover:bg-lime-500 hover:text-white transition rounded-md"
                     >
                       New Project
