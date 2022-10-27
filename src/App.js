@@ -61,7 +61,7 @@ function App() {
           />
           <Route
             exact
-            path="/projects/new"
+            path="/projects/create"
             element={
               <PrivateRoute>
                 <CreateProject />
