@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function ProjectDetails() {
   let [project, setProject] = useState([]);
   const { id } = useParams();
   let { authTokens, logoutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   let getProjectDetails = async () => {
     let response = await fetch(
@@ -22,6 +23,25 @@ function ProjectDetails() {
 
     if (response.status === 200) {
       setProject(data);
+    } else if (response.statusText === "Unauthorized") {
+      logoutUser();
+    }
+  };
+
+  let deleteProject = async () => {
+    let response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/projects/${id}/delete/`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authTokens.access),
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      navigate("/projects");
     } else if (response.statusText === "Unauthorized") {
       logoutUser();
     }
@@ -127,6 +147,7 @@ function ProjectDetails() {
               <button
                 className="z-20 block p-4 text-red-700 transition-all bg-red-100 border-2 border-white rounded-full hover:scale-110 active:bg-red-200"
                 type="button"
+                onClick={deleteProject}
               >
                 <svg
                   className="w-4 h-4"
