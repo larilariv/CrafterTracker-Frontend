@@ -37,7 +37,7 @@ function CreateProject() {
     } catch (error) {
       console.log(error);
     }
-    navigate("/allprojects");
+    navigate("/projects");
   };
 
   return (

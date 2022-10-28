@@ -45,8 +45,8 @@ function Navbar() {
                   </>
                 ) : // <>
                 //   <Link
-                //     to="/allprojects"
-                //     href="https://craftertracker.herokuapp.com/allprojects"
+                //     to="/publicprojects"
+                //     href="https://craftertracker.herokuapp.com/publicprojects"
                 //     className="text-white/75 transition hover:text-white"
                 //   >
                 //     {/* Project Gallery */}
