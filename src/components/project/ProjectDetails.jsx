@@ -31,7 +31,7 @@ function ProjectDetails() {
 
   let deleteProject = async () => {
     let response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/projects/${id}/delete/`,
+      `${process.env.REACT_APP_API_URL}/api/projects/${id}/`,
       {
         method: "DELETE",
         headers: {

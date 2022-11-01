@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function CreateProject() {
+  const navigate = useNavigate();
+
   let [name, setName] = useState("");
   let [description, setDescription] = useState("");
   let { authTokens, logoutUser } = useContext(AuthContext);
-
-  const navigate = useNavigate();
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/projects/create/`,
+        `${process.env.REACT_APP_API_URL}/api/projects/`,
         {
           method: "POST",
           headers: {
