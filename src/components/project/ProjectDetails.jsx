@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 function ProjectDetails() {
-  let [project, setProject] = useState([]);
   const { id } = useParams();
-  let { authTokens, logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  let [project, setProject] = useState([]);
+  let { authTokens, logoutUser } = useContext(AuthContext);
 
   let getProjectDetails = async () => {
     let response = await fetch(
@@ -30,7 +31,7 @@ function ProjectDetails() {
 
   let deleteProject = async () => {
     let response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/projects/${id}/delete/`,
+      `${process.env.REACT_APP_API_URL}/api/projects/${id}/`,
       {
         method: "DELETE",
         headers: {
@@ -124,9 +125,10 @@ function ProjectDetails() {
             </div>
 
             <div className="flex items-center -space-x-4 hover:space-x-1">
-              <button
+              <Link
+                to={`/projects/${id}/edit/`}
+                href={`https://craftertracker.herokuapp.com/projects/${id}/edit/`}
                 className="z-10 block p-4 text-green-700 transition-all bg-green-100 border-2 border-white rounded-full hover:scale-110 active:bg-green-200"
-                type="button"
               >
                 <svg
                   className="w-4 h-4"
@@ -142,7 +144,7 @@ function ProjectDetails() {
                     d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                   />
                 </svg>
-              </button>
+              </Link>
 
               <button
                 className="z-20 block p-4 text-red-700 transition-all bg-red-100 border-2 border-white rounded-full hover:scale-110 active:bg-red-200"
