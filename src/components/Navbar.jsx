@@ -9,8 +9,8 @@ function Navbar() {
       <header className="bg-neutral-800">
         <div className="flex items-center h-16 max-w-screen-xl gap-8 px-4 mx-auto sm:px-6 lg:px-8">
           <Link
-            to="/publicprojects"
-            href="https://craftertracker.herokuapp.com/publicprojects"
+            to="/"
+            href="https://craftertracker.herokuapp.com/"
             className="block text-cyan-400"
           >
             <img
@@ -29,30 +29,21 @@ function Navbar() {
                 {user ? (
                   <>
                     <Link
+                      to="/publicprojects"
+                      href="https://craftertracker.herokuapp.com/publicprojects"
+                      className="text-white/75 transition hover:text-white"
+                    >
+                      Public Project Gallery
+                    </Link>
+                    <Link
                       to="/projects"
                       href="https://craftertracker.herokuapp.com/projects"
                       className="text-white/75 transition hover:text-white"
                     >
                       My Project Gallery
                     </Link>
-                    <Link
-                      to="/materials"
-                      href="https://craftertracker.herokuapp.com/materials"
-                      className="text-white/75 transition hover:text-white"
-                    >
-                      My Material "Stash"
-                    </Link>
                   </>
-                ) : // <>
-                //   <Link
-                //     to="/publicprojects"
-                //     href="https://craftertracker.herokuapp.com/publicprojects"
-                //     className="text-white/75 transition hover:text-white"
-                //   >
-                //     {/* Project Gallery */}
-                //   </Link>
-                // </>
-                null}
+                ) : null}
               </ul>
             </nav>
 
